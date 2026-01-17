@@ -1,19 +1,20 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import LoginPage from "./pages/LoginPage";
-import Dashboard from "./pages/Dashboard";
-import AttendancePage from "./pages/AttendancePage";
-import QRAttendancePage from "./pages/QRAttendancePage";
-import TimetablePage from "./pages/TimetablePage";
-import FeedbackPage from "./pages/FeedbackPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
+import AttendancePage from "./pages/AttendancePage";
+import Dashboard from "./pages/Dashboard";
+import FeedbackPage from "./pages/FeedbackPage";
+import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
+import QRAttendancePage from "./pages/QRAttendancePage";
+import SignUpPage from "./pages/SignUpPage";
+import TimetablePage from "./pages/TimetablePage";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ function AppRoutes() {
         path="/" 
         element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />} 
       />
+      <Route path="/signup" element={<SignUpPage />} />
       <Route
         path="/dashboard"
         element={
