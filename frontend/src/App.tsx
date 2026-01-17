@@ -3,10 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import "@/styles/animations.css";
 
-import AnalyticsPage from "./pages/AnalyticsPage";
+import LoginPage from "./pages/LoginPage";
+import LandingPage from "./pages/LandingPage";
+import Dashboard from "./pages/Dashboard";
 import AttendancePage from "./pages/AttendancePage";
 import Dashboard from "./pages/Dashboard";
 import FeedbackPage from "./pages/FeedbackPage";
@@ -33,8 +35,9 @@ function AppRoutes() {
 
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route 
-        path="/" 
+        path="/login" 
         element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />} 
       />
       <Route path="/signup" element={<SignUpPage />} />
