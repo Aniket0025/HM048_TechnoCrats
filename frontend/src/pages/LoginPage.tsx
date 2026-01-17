@@ -2,14 +2,21 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole, roleDescriptions, roleIcons, roleLabels } from '@/types/auth';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, BookOpen, Eye, EyeOff, GraduationCap, Lock, Mail, Shield, Users } from 'lucide-react';
+import {
+    ArrowLeft,
+    ArrowRight,
+    BarChart3,
+    BookOpen,
+    Eye,
+    EyeOff,
+    GraduationCap,
+    Lock,
+    Mail,
+    Shield,
+    Users,
+} from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, ArrowRight, Shield, Users, BookOpen, BarChart3, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { UserRole, roleLabels, roleDescriptions, roleIcons } from '@/types/auth';
-import { Button } from '@/components/ui/button';
 
 const roles: UserRole[] = ['admin', 'department', 'teacher', 'student'];
 
