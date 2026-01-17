@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "@/hooks/use-toast";
 import { UserRole, roleDescriptions, roleIcons, roleLabels } from "@/types/auth";
 
@@ -36,6 +37,7 @@ function isValidEmail(value: string) {
 
 export default function SignUpPage() {
   const navigate = useNavigate();
+  const { signup } = useAuth();
 
   const [selectedRole, setSelectedRole] = useState<UserRole>("student");
   const [fullName, setFullName] = useState("");
@@ -90,12 +92,21 @@ export default function SignUpPage() {
 
     setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 900));
-      toast({
-        title: "Account created",
-        description: "You can now sign in with your email and password.",
+      await signup({
+        name: fullName.trim(),
+        email: email.trim(),
+        password,
+        role: selectedRole,
+        department: requiresDepartment ? department.trim() : undefined,
       });
-      navigate("/", { replace: true });
+      toast({ title: "Account created" });
+      navigate("/dashboard", { replace: true });
+    } catch (err: any) {
+      toast({
+        title: "Sign up failed",
+        description: err?.message || "Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -50,6 +50,8 @@ export function Sidebar() {
   const { user, logout } = useAuth();
   const location = useLocation();
 
+  const displayName = (user?.name || user?.email || 'User').trim();
+
   const filteredNavItems = navItems.filter(
     (item) => user && item.roles.includes(user.role)
   );
@@ -102,8 +104,8 @@ export function Sidebar() {
         <div className="border-b border-sidebar-border p-4">
           <div className="flex items-center gap-3">
             <img
-              src={user.avatar}
-              alt={user.name}
+              src={user.avatar || ''}
+              alt={displayName}
               className="h-10 w-10 rounded-full ring-2 ring-sidebar-accent"
             />
             <AnimatePresence mode="wait">
@@ -115,7 +117,7 @@ export function Sidebar() {
                   className="flex-1 overflow-hidden"
                 >
                   <p className="truncate text-sm font-semibold text-sidebar-foreground">
-                    {user.name}
+                    {displayName}
                   </p>
                   <p className="text-xs text-sidebar-primary">
                     {roleLabels[user.role]}
