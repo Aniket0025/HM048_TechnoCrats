@@ -1,9 +1,14 @@
 import cors from "cors";
-import "dotenv/config";
+import dotenv from "dotenv";
 import express from "express";
 
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+
+dotenv.config({ path: ".env" });
+if (!process.env.MONGODB_URI) {
+    dotenv.config({ path: ".env.example" });
+}
 
 const app = express();
 
@@ -39,6 +44,7 @@ async function start() {
     app.listen(port);
 }
 
-start().catch(() => {
+start().catch((err) => {
+    console.error(err);
     process.exit(1);
 });

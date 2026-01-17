@@ -20,10 +20,10 @@ function signToken(user) {
 
 router.post("/signup", async (req, res) => {
     try {
-        const { name, email, password, role } = req.body;
+        const { name, email, password, role, department, avatar } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({ message: "email and password are required" });
+        if (!name || !email || !password) {
+            return res.status(400).json({ message: "name, email and password are required" });
         }
 
         const existing = await User.findOne({ email: email.toLowerCase() });
@@ -31,7 +31,7 @@ router.post("/signup", async (req, res) => {
             return res.status(409).json({ message: "Email already in use" });
         }
 
-        const user = await User.create({ name, email, password, role });
+        const user = await User.create({ name, email, password, role, department, avatar });
         const token = signToken(user);
 
         return res.status(201).json({ token, user });
@@ -50,7 +50,7 @@ router.post("/signin", async (req, res) => {
 
         const user = await User.findOne({ email: email.toLowerCase() });
         if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
+            return res.status(404).json({ message: "User not found" });
         }
 
         const ok = await user.comparePassword(password);
