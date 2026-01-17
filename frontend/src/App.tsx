@@ -5,8 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import "@/styles/animations.css";
 
 import LoginPage from "./pages/LoginPage";
+import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import AttendancePage from "./pages/AttendancePage";
 import QRAttendancePage from "./pages/QRAttendancePage";
@@ -32,8 +34,9 @@ function AppRoutes() {
 
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route 
-        path="/" 
+        path="/login" 
         element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />} 
       />
       <Route
