@@ -1,10 +1,23 @@
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from '@/hooks/use-toast';
+import { UserRole, roleDescriptions, roleIcons, roleLabels } from '@/types/auth';
+import { motion } from 'framer-motion';
+import {
+    ArrowLeft,
+    ArrowRight,
+    BarChart3,
+    BookOpen,
+    Eye,
+    EyeOff,
+    GraduationCap,
+    Lock,
+    Mail,
+    Shield,
+    Users,
+} from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, ArrowRight, Shield, Users, BookOpen, BarChart3, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { UserRole, roleLabels, roleDescriptions, roleIcons } from '@/types/auth';
-import { Button } from '@/components/ui/button';
 
 const roles: UserRole[] = ['admin', 'department', 'teacher', 'student'];
 
@@ -17,7 +30,7 @@ const features = [
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { login, isLoading } = useAuth();
+  const { login, signup, isLoading } = useAuth();
   const [selectedRole, setSelectedRole] = useState<UserRole>('student');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,14 +38,55 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(email, password, selectedRole);
-    navigate('/dashboard');
+    try {
+      await login(email, password, selectedRole);
+      navigate('/dashboard');
+    } catch (err: any) {
+      toast({
+        title: 'Sign in failed',
+        description: err?.message || 'Please check your credentials.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleDemoLogin = async (role: UserRole) => {
     setSelectedRole(role);
-    await login(`${role}@college.edu`, 'demo123', role);
-    navigate('/dashboard');
+    const demoEmail = `${role}@college.edu`;
+    const demoPassword = 'demo123';
+    const demoName = `Demo ${roleLabels[role]}`;
+
+    try {
+      await login(demoEmail, demoPassword, role);
+      navigate('/dashboard');
+    } catch (err: any) {
+      if (String(err?.message || '').toLowerCase().includes('not found')) {
+        try {
+          await signup({
+            name: demoName,
+            email: demoEmail,
+            password: demoPassword,
+            role,
+            department: role === 'department' || role === 'teacher' ? 'Computer Science' : undefined,
+          });
+          navigate('/dashboard');
+          return;
+        } catch (e2: any) {
+          toast({
+            title: 'Demo login failed',
+            description: e2?.message || 'Please try again.',
+            variant: 'destructive',
+          });
+          return;
+        }
+      }
+
+      toast({
+        title: 'Demo login failed',
+        description: err?.message || 'Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (
@@ -267,6 +321,17 @@ export default function LoginPage() {
                 </>
               )}
             </Button>
+
+            <div className="text-center text-sm text-muted-foreground">
+              Don&apos;t have an account?{' '}
+              <button
+                type="button"
+                onClick={() => navigate('/signup')}
+                className="text-primary underline underline-offset-4 hover:text-primary/90"
+              >
+                Create one
+              </button>
+            </div>
           </motion.form>
 
           {/* Quick Demo Access */}

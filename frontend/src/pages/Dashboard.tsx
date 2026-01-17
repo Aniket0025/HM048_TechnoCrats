@@ -77,6 +77,11 @@ const itemVariants = {
 export default function Dashboard() {
   const { user } = useAuth();
 
+  const rawFirstName = (user?.name || user?.email || '').trim().split(/\s+/)[0];
+  const firstName = rawFirstName
+    ? `${rawFirstName.charAt(0).toUpperCase()}${rawFirstName.slice(1)}`
+    : 'there';
+
   const getStats = () => {
     switch (user?.role) {
       case 'admin':
@@ -96,7 +101,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-8">
       <PageHeader
-        title={`Welcome back, ${user?.name?.split(' ')[0]}!`}
+        title={`Welcome back, ${firstName}!`}
         description={`Here's what's happening in your ${user?.role === 'admin' ? 'institution' : user?.role === 'department' ? 'department' : 'classes'} today.`}
       />
 
