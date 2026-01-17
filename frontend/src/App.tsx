@@ -1,17 +1,19 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import "@/styles/animations.css";
 
-import LoginPage from "./pages/LoginPage";
-import LandingPage from "./pages/LandingPage";
-import Dashboard from "./pages/Dashboard";
+import AnalyticsPage from "./pages/AnalyticsPage";
 import AttendancePage from "./pages/AttendancePage";
 import Dashboard from "./pages/Dashboard";
 import FeedbackPage from "./pages/FeedbackPage";
+import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import QRAttendancePage from "./pages/QRAttendancePage";
