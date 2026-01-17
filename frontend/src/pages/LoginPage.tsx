@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, ArrowRight, Shield, Users, BookOpen, BarChart3, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { GraduationCap, ArrowRight, Shield, Users, BookOpen, BarChart3, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole, roleLabels, roleDescriptions, roleIcons } from '@/types/auth';
 import { Button } from '@/components/ui/button';
@@ -37,6 +37,22 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen">
+      {/* Back Button */}
+      <motion.div
+        className="fixed top-6 left-6 z-50"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+      >
+        <Button
+          variant="outline"
+          className="bg-white/90 backdrop-blur-md hover:bg-white hover:shadow-lg transition-all duration-300 border-gray-200 hover:border-blue-400 group"
+          onClick={() => navigate("/")}
+        >
+          <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="font-medium">Back to Home</span>
+        </Button>
+      </motion.div>
       {/* Left Panel - Branding */}
       <motion.div
         className="hidden lg:flex lg:w-1/2 xl:w-[45%] flex-col justify-between bg-gradient-hero p-12 text-white relative overflow-hidden"
