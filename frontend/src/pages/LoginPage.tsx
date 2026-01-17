@@ -1,3 +1,8 @@
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import { UserRole, roleDescriptions, roleIcons, roleLabels } from '@/types/auth';
+import { motion } from 'framer-motion';
+import { ArrowRight, BarChart3, BookOpen, Eye, EyeOff, GraduationCap, Lock, Mail, Shield, Users } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -267,6 +272,17 @@ export default function LoginPage() {
                 </>
               )}
             </Button>
+
+            <div className="text-center text-sm text-muted-foreground">
+              Don&apos;t have an account?{' '}
+              <button
+                type="button"
+                onClick={() => navigate('/signup')}
+                className="text-primary underline underline-offset-4 hover:text-primary/90"
+              >
+                Create one
+              </button>
+            </div>
           </motion.form>
 
           {/* Quick Demo Access */}
