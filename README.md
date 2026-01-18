@@ -35,17 +35,39 @@ EDUTRACK is a full-stack web application built to digitize and simplify institut
 Here are some sample screenshots showcasing the platform UI (placeholders):  
 
 **🔹 Landing Page**  
-![Landing](https://raw.githubusercontent.com/Aniket0025/HM048_TechnoCrats/main/frontend/public/placeholder.svg)  
+<img width="1900" height="905" alt="image" src="https://github.com/user-attachments/assets/4bbb2131-ab7a-48b3-8fc9-a91e6ca3d611" />
+
 
 **🔹 Dashboard**  
-![Dashboard](https://raw.githubusercontent.com/Aniket0025/HM048_TechnoCrats/main/frontend/public/placeholder.svg)  
-
+<img width="1898" height="907" alt="image" src="https://github.com/user-attachments/assets/23283d21-6d56-427e-a4e5-fcb3ccf4ed22" />
+  
 **🔹 QR Attendance**  
-![QR Attendance](https://raw.githubusercontent.com/Aniket0025/HM048_TechnoCrats/main/frontend/public/placeholder.svg)  
+<img width="1901" height="914" alt="image" src="https://github.com/user-attachments/assets/05ae8569-43b5-454b-8088-8e84e523f61f" />
+
+<img width="1899" height="909" alt="image" src="https://github.com/user-attachments/assets/71ba51bf-3e68-4573-95b0-fcb15e38696f" />
+
+**🔹 Batch Management ** 
+<img width="1900" height="910" alt="image" src="https://github.com/user-attachments/assets/63925648-6fb7-4a20-9573-9dd979144e0a" />
+
 
 **🔹 Attendance & Analytics**  
-![Analytics](https://raw.githubusercontent.com/Aniket0025/HM048_TechnoCrats/main/frontend/public/placeholder.svg)  
+<img width="1902" height="914" alt="image" src="https://github.com/user-attachments/assets/e9b7ff35-c0ec-4382-ba08-2819a9f63e55" />
 
+**🔹 Ai power Time Table Genterator **  
+<img width="1905" height="912" alt="image" src="https://github.com/user-attachments/assets/557c922c-7c0e-4cfd-9ec1-426a76f37a75" />
+
+<img width="1901" height="911" alt="image" src="https://github.com/user-attachments/assets/2ef8030d-4c31-47d0-b73c-a56196516290" />
+
+
+**🔹Performance ** 
+<img width="1899" height="912" alt="image" src="https://github.com/user-attachments/assets/fa95c816-ee63-4225-9581-6f68d74c840a" />
+
+**🔹Annoucement **  
+<img width="1900" height="904" alt="image" src="https://github.com/user-attachments/assets/d435f470-e537-4b63-891d-7f07bcd2004d" />
+
+
+
+  
 ---
 
 ## **🌍 GitHub Repository**  
@@ -133,3 +155,4 @@ If you have questions or want to report an issue, please open an issue on the Gi
 
 ## **📜 License**  
 License MIT.
+
