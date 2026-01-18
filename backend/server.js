@@ -4,6 +4,13 @@ import express from "express";
 
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import attendanceRoutes from "./routes/attendance.routes.js";
+import bulkRoutes from "./routes/bulk.routes.js";
+import coursesRoutes from "./routes/courses.routes.js";
+import marksRoutes from "./routes/marks.routes.js";
+import subjectsRoutes from "./routes/subjects.routes.js";
+import timetableRoutes from "./routes/timetable.routes.js";
+import usersRoutes from "./routes/users.routes.js";
 
 dotenv.config({ path: ".env" });
 if (!process.env.MONGODB_URI) {
@@ -27,6 +34,13 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/subjects", subjectsRoutes);
+app.use("/api/courses", coursesRoutes);
+app.use("/api/timetable", timetableRoutes);
+app.use("/api/attendance", attendanceRoutes);
+app.use("/api/marks", marksRoutes);
+app.use("/api/bulk", bulkRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
