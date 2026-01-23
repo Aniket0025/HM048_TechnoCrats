@@ -20,6 +20,13 @@ import NotFound from "./pages/NotFound";
 import QRAttendancePage from "./pages/QRAttendancePage";
 import SignUpPage from "./pages/SignUpPage";
 import TimetablePage from "./pages/TimetablePage";
+import StudentAssignmentsPage from "./pages/StudentAssignmentsPage";
+import TeacherAssignmentsPage from "./pages/TeacherAssignmentsPage";
+import AssignmentDetailsPage from "./pages/AssignmentDetailsPage";
+import QuizPage from "./pages/QuizPage";
+import FileSubmissionPage from "./pages/FileSubmissionPage";
+import CreateAssignmentPage from "./pages/CreateAssignmentPage";
+import EvaluationPage from "./pages/EvaluationPage";
 
 const queryClient = new QueryClient();
 
@@ -154,6 +161,63 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <GeoFenceManagementPage />
+          </ProtectedRoute>
+        }
+      />
+      {/* Assignment Routes */}
+      <Route
+        path="/assignments"
+        element={
+          <ProtectedRoute>
+            <StudentAssignmentsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assignments/teacher"
+        element={
+          <ProtectedRoute>
+            <TeacherAssignmentsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assignments/create"
+        element={
+          <ProtectedRoute>
+            <CreateAssignmentPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assignments/:id"
+        element={
+          <ProtectedRoute>
+            <AssignmentDetailsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assignments/:id/submit"
+        element={
+          <ProtectedRoute>
+            <FileSubmissionPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assignments/:id/quiz"
+        element={
+          <ProtectedRoute>
+            <QuizPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assignments/:id/evaluate"
+        element={
+          <ProtectedRoute>
+            <EvaluationPage />
           </ProtectedRoute>
         }
       />
