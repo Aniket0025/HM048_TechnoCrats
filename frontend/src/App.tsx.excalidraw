@@ -1,0 +1,70 @@
+import { Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/contexts/AuthContext";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import Layout from "@/components/Layout";
+
+// Existing pages
+import LoginPage from "@/pages/LoginPage";
+import SignUpPage from "@/pages/SignUpPage";
+import Dashboard from "@/pages/Dashboard";
+import AttendancePage from "@/pages/AttendancePage";
+import TimetablePage from "@/pages/TimetablePage";
+import MarksPage from "@/pages/MarksPage";
+import CoursesPage from "@/pages/CoursesPage";
+import SubjectsPage from "@/pages/SubjectsPage";
+import UsersPage from "@/pages/UsersPage";
+import ProfilePage from "@/pages/ProfilePage";
+import AnnouncementsPage from "@/pages/AnnouncementsPage";
+import AuthCallbackPage from "@/pages/AuthCallbackPage";
+import ProxyDetectionPage from "@/pages/ProxyDetectionPage";
+import StudentLiveAttendancePage from "@/pages/StudentLiveAttendancePage";
+import TeacherLiveSessionPage from "@/pages/TeacherLiveSessionPage";
+
+// New Excalidraw pages
+import TeacherClassPage from "@/pages/TeacherClassPage";
+import StudentNotesPage from "@/pages/StudentNotesPage";
+import StudentNoteViewPage from "@/pages/StudentNoteViewPage";
+
+export default function App() {
+    return (
+        <AuthProvider>
+            <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="/auth/callback" element={<AuthCallbackPage />} />
+
+                <Route
+                    path="/*"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <Routes>
+                                    <Route path="/" element={<Dashboard />} />
+                                    <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path="/attendance" element={<AttendancePage />} />
+                                    <Route path="/live-attendance" element={<StudentLiveAttendancePage />} />
+                                    <Route path="/session/:sessionId" element={<TeacherLiveSessionPage />} />
+                                    <Route path="/timetable" element={<TimetablePage />} />
+                                    <Route path="/marks" element={<MarksPage />} />
+                                    <Route path="/courses" element={<CoursesPage />} />
+                                    <Route path="/subjects" element={<SubjectsPage />} />
+                                    <Route path="/users" element={<UsersPage />} />
+                                    <Route path="/profile" element={<ProfilePage />} />
+                                    <Route path="/announcements" element={<AnnouncementsPage />} />
+                                    <Route path="/proxy-detection" element={<ProxyDetectionPage />} />
+
+                                    {/* Excalidraw LMS */}
+                                    <Route path="/class/:classId" element={<TeacherClassPage />} />
+                                    <Route path="/notes" element={<StudentNotesPage />} />
+                                    <Route path="/notes/:id" element={<StudentNoteViewPage />} />
+                                </Routes>
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+            </Routes>
+            <Toaster />
+        </AuthProvider>
+    );
+}
