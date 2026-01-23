@@ -1,0 +1,26 @@
+{
+  "model_type": "rf",
+  "features": [
+    "hour_of_day",
+    "day_of_week",
+    "gps_lat",
+    "gps_lng",
+    "gps_accuracy",
+    "ip_octet1",
+    "ip_octet2",
+    "ip_octet3",
+    "ip_octet4",
+    "ua_length",
+    "fp_hash",
+    "dist_from_ref",
+    "is_private_ip",
+    "is_night",
+    "is_weekend",
+    "poor_gps"
+  ],
+  "scaler": "StandardScaler",
+  "trained_at": "2026-01-23T08:06:41.051514",
+  "train_samples": 1600,
+  "test_samples": 400,
+  "roc_auc": 1.0
+}

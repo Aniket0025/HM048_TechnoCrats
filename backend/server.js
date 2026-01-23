@@ -2,7 +2,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 
+import { createServer } from "http";
+import { Server } from "socket.io";
+
 import { connectDB } from "./config/db.js";
+import { initializeAttendanceSocket } from "./sockets/attendanceSocket.js";
 import authRoutes from "./routes/auth.routes.js";
 import attendanceRoutes from "./routes/attendance.routes.js";
 import bulkRoutes from "./routes/bulk.routes.js";
@@ -15,6 +19,7 @@ import announcementsRoutes from "./routes/announcements.routes.js";
 import profilesRoutes from "./routes/profiles.routes.js";
 import pushRoutes from "./routes/push.routes.js";
 import emailsRoutes from "./routes/emails.routes.js";
+import proxyDetectionRoutes from "./routes/proxyDetection.routes.js";
 import { performanceTracker } from "./middleware/performance.js";
 
 dotenv.config({ path: ".env" });
@@ -52,6 +57,7 @@ app.use("/api/announcements", announcementsRoutes);
 app.use("/api/profiles", profilesRoutes);
 app.use("/api/push", pushRoutes);
 app.use("/api/emails", emailsRoutes);
+app.use("/api/proxy-detection", proxyDetectionRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
@@ -66,7 +72,12 @@ const port = Number(process.env.PORT || 5000);
 
 async function start() {
     await connectDB();
-    app.listen(port);
+    const httpServer = createServer(app);
+    initializeAttendanceSocket(httpServer);
+    httpServer.listen(port, () => {
+        console.log(`🚀 Server running on http://localhost:${port}`);
+        console.log(`🔌 Socket.IO enabled`);
+    });
 }
 
 start().catch((err) => {
