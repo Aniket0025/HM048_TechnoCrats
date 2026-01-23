@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import QRAttendancePage from "./pages/QRAttendancePage";
 import SignUpPage from "./pages/SignUpPage";
 import TimetablePage from "./pages/TimetablePage";
+import AuthCallbackPage from "./pages/AuthCallbackPage";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/auth/callback" element={<AuthCallbackPage />} />
       <Route 
         path="/login" 
         element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />} 

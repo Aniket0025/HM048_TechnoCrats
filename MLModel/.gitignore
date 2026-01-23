@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+
+# local artifacts
+models/*.joblib
+models/*.pkl
+models/*.onnx
+models/metadata.json
+
+# datasets
+data/*.csv
+data/*.xlsx
+data/*.parquet
