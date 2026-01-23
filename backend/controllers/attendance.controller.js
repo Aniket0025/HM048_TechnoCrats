@@ -5,6 +5,8 @@ import { AttendanceSession } from "../models/AttendanceSession.js";
 import { AttendanceRecord } from "../models/AttendanceRecord.js";
 import { Course } from "../models/Course.js";
 import { Enrollment } from "../models/Enrollment.js";
+import { User } from "../models/User.js";
+import { runProxyDetection } from "../utils/proxyDetection.js";
 
 function todayISO() {
     const d = new Date();
@@ -74,7 +76,7 @@ export async function closeAttendanceSession(req, res) {
 }
 
 export async function markAttendanceByQr(req, res) {
-    const { qrToken } = req.body;
+    const { qrToken, gpsLat, gpsLng, gpsAccuracy } = req.body;
 
     if (!qrToken) throw new HttpError(400, "qrToken is required");
 
@@ -98,6 +100,26 @@ export async function markAttendanceByQr(req, res) {
     });
 
     if (!record) return res.json({ ok: true, alreadyMarked: true });
+
+    // Run proxy detection in background (don’t block response)
+    const student = await User.findById(req.user.sub, "name email");
+    setImmediate(async () => {
+        try {
+            await runProxyDetection({
+                sessionId: session._id,
+                studentId: req.user.sub,
+                studentIdentifier: student.email,
+                gpsLat,
+                gpsLng,
+                gpsAccuracy,
+                req,
+                attendanceRecordId: record._id,
+            });
+        } catch (e) {
+            console.error("[ProxyDetection] Background check failed:", e);
+        }
+    });
+
     return res.status(201).json({ record });
 }
 
