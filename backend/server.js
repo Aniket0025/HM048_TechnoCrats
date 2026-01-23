@@ -11,6 +11,11 @@ import marksRoutes from "./routes/marks.routes.js";
 import subjectsRoutes from "./routes/subjects.routes.js";
 import timetableRoutes from "./routes/timetable.routes.js";
 import usersRoutes from "./routes/users.routes.js";
+import announcementsRoutes from "./routes/announcements.routes.js";
+import profilesRoutes from "./routes/profiles.routes.js";
+import pushRoutes from "./routes/push.routes.js";
+import emailsRoutes from "./routes/emails.routes.js";
+import { performanceTracker } from "./middleware/performance.js";
 
 dotenv.config({ path: ".env" });
 if (!process.env.MONGODB_URI) {
@@ -20,6 +25,8 @@ if (!process.env.MONGODB_URI) {
 const app = express();
 
 app.use(express.json({ limit: "1mb" }));
+
+app.use(performanceTracker);
 
 const frontendOrigin = process.env.FRONTEND_ORIGIN;
 app.use(
@@ -41,6 +48,10 @@ app.use("/api/timetable", timetableRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/marks", marksRoutes);
 app.use("/api/bulk", bulkRoutes);
+app.use("/api/announcements", announcementsRoutes);
+app.use("/api/profiles", profilesRoutes);
+app.use("/api/push", pushRoutes);
+app.use("/api/emails", emailsRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
