@@ -11,6 +11,7 @@ import marksRoutes from "./routes/marks.routes.js";
 import subjectsRoutes from "./routes/subjects.routes.js";
 import timetableRoutes from "./routes/timetable.routes.js";
 import usersRoutes from "./routes/users.routes.js";
+import geoFenceRoutes from "./routes/geofence.routes.js";
 
 dotenv.config({ path: ".env" });
 if (!process.env.MONGODB_URI) {
@@ -41,6 +42,7 @@ app.use("/api/timetable", timetableRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/marks", marksRoutes);
 app.use("/api/bulk", bulkRoutes);
+app.use("/api/geofence", geoFenceRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });

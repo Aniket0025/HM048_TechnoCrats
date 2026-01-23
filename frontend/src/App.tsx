@@ -13,13 +13,13 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import AttendancePage from "./pages/AttendancePage";
 import Dashboard from "./pages/Dashboard";
 import FeedbackPage from "./pages/FeedbackPage";
+import GeoFenceManagementPage from "./pages/GeoFenceManagementPage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import QRAttendancePage from "./pages/QRAttendancePage";
 import SignUpPage from "./pages/SignUpPage";
 import TimetablePage from "./pages/TimetablePage";
-import AuthCallbackPage from "./pages/AuthCallbackPage";
 
 const queryClient = new QueryClient();
 
@@ -39,7 +39,6 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/auth/callback" element={<AuthCallbackPage />} />
       <Route 
         path="/login" 
         element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />} 
@@ -147,6 +146,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/geofence"
+        element={
+          <ProtectedRoute>
+            <GeoFenceManagementPage />
           </ProtectedRoute>
         }
       />
