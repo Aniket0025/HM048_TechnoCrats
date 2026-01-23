@@ -21,6 +21,7 @@ import geoFenceRoutes from "./routes/geofence.routes.js";
 import assignmentRoutes from "./routes/assignment.routes.js";
 import submissionRoutes from "./routes/submission.routes.js";
 import evaluationRoutes from "./routes/evaluation.routes.js";
+import aiTimetableRoutes from "./routes/aiTimetable.routes.js";
 import { performanceTracker } from "./middleware/performance.js";
 
 dotenv.config({ path: ".env" });
@@ -60,6 +61,7 @@ app.use("/api/geofence", geoFenceRoutes);
 app.use("/api/assignments", assignmentRoutes);
 app.use("/api/submissions", submissionRoutes);
 app.use("/api/evaluations", evaluationRoutes);
+app.use("/api/ai-timetable", aiTimetableRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
