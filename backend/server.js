@@ -15,12 +15,7 @@ import marksRoutes from "./routes/marks.routes.js";
 import subjectsRoutes from "./routes/subjects.routes.js";
 import timetableRoutes from "./routes/timetable.routes.js";
 import usersRoutes from "./routes/users.routes.js";
-import announcementsRoutes from "./routes/announcements.routes.js";
-import profilesRoutes from "./routes/profiles.routes.js";
-import pushRoutes from "./routes/push.routes.js";
-import emailsRoutes from "./routes/emails.routes.js";
-import proxyDetectionRoutes from "./routes/proxyDetection.routes.js";
-import { performanceTracker } from "./middleware/performance.js";
+import geoFenceRoutes from "./routes/geofence.routes.js";
 
 dotenv.config({ path: ".env" });
 if (!process.env.MONGODB_URI) {
@@ -53,11 +48,7 @@ app.use("/api/timetable", timetableRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/marks", marksRoutes);
 app.use("/api/bulk", bulkRoutes);
-app.use("/api/announcements", announcementsRoutes);
-app.use("/api/profiles", profilesRoutes);
-app.use("/api/push", pushRoutes);
-app.use("/api/emails", emailsRoutes);
-app.use("/api/proxy-detection", proxyDetectionRoutes);
+app.use("/api/geofence", geoFenceRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
