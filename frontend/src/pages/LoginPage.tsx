@@ -28,9 +28,15 @@ const features = [
   { icon: BarChart3, title: 'Analytics', description: 'Real-time insights & reporting' },
 ];
 
+function getApiBaseUrl() {
+  const raw = (import.meta as any)?.env?.VITE_API_URL as string | undefined;
+  return (raw && raw.trim().length > 0 ? raw.trim() : 'http://localhost:5000').replace(/\/$/, '');
+}
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login, signup, isLoading } = useAuth();
+  const apiBaseUrl = getApiBaseUrl();
   const [selectedRole, setSelectedRole] = useState<UserRole>('student');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,6 +54,11 @@ export default function LoginPage() {
         variant: 'destructive',
       });
     }
+  };
+
+  const handleGoogleLogin = () => {
+    const url = `${apiBaseUrl}/api/auth/google?redirectTo=/auth/callback`;
+    window.location.href = url;
   };
 
   const handleDemoLogin = async (role: UserRole) => {
@@ -217,6 +228,23 @@ export default function LoginPage() {
             <p className="mt-2 text-muted-foreground">
               Sign in to access your dashboard
             </p>
+          </motion.div>
+
+          <motion.div
+            className="mt-6"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.25 }}
+          >
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full h-12"
+              onClick={handleGoogleLogin}
+              disabled={isLoading}
+            >
+              Continue with Google
+            </Button>
           </motion.div>
 
           {/* Role Selection */}
