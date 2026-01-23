@@ -82,22 +82,57 @@ Here are some sample screenshots showcasing the platform UI (placeholders):
 
 ## **🛠️ Tech Stack & APIs Used**  
 
-- **Frontend:** React, Vite, TypeScript, Tailwind CSS, shadcn/ui, React Router  
-- **UI/Charts:** Framer Motion, Recharts, Lucide Icons  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB (Mongoose ODM)  
-- **Authentication:** JWT (jsonwebtoken), Password Hashing (bcryptjs), Google Auth
-- **Utilities:** dotenv, cors  
-- **Avatar API:** DiceBear Avatars API (for user avatar fallback)  
+### **Backend**
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **Authentication**: JWT + Google OAuth 2.0 (`google-auth-library`)
+- **Real‑time**: Socket.IO
+- **Email**: Nodemailer (SMTP)
+- **Push Notifications**: Web Push (VAPID)
+- **Security**: bcryptjs, role‑based access control
+- **ML Integration**: Python subprocess for proxy detection
+- **Performance**: Optional request logging middleware
+- **Environment**: dotenv, cors
+
+### **Frontend**
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Routing**: React Router v7
+- **State Management**: React Query (TanStack Query)
+- **UI**: TailwindCSS + Radix UI (shadcn/ui)
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **Charts**: Recharts
+- **Real‑time**: Socket.IO client
+- **QR Scanning**: html5-qrcode
+- **Maps**: Google Maps API (planned)
+- **Avatars**: DiceBear API
+
+### **ML Model (Python)**
+- **Language**: Python 3.11/3.12
+- **Libraries**: numpy, pandas, scikit-learn, joblib
+- **Model**: RandomForestClassifier for proxy detection
+- **Features**: Time, GPS, IP, device fingerprint
+- **Pipeline**: Training, scaling, prediction scripts
+- **Fallback**: Heuristic if model unavailable
+
+### **DevOps & Tooling**
+- **Package Managers**: npm (frontend/backend), pip (ML)
+- **Linting**: ESLint, TypeScript
+- **Hot Reload**: nodemon (backend), Vite (frontend)
+- **Version Control**: Git  
 
 ---
 
 ## **🚀 Upcoming Features**  
 
-🔹 **Persistent Attendance & Timetable Data:** Replace mock data with fully integrated database-backed modules.  
-🔹 **Report Export Enhancements:** PDF/CSV exports for attendance & analytics dashboards.  
-🔹 **Notifications:** Real-time alerts for low attendance, announcements, and messages.  
-🔹 **More Admin Controls:** College/department/subject management with advanced filters & audit logs.  
+🔹 **Google Maps Geo‑Fencing**: Visual geo‑fence creation and validation for QR attendance.  
+🔹 **Real‑Time Socket.IO Attendance**: Live attendance updates during QR sessions.  
+🔹 **Advanced Proxy Detection**: ML‑driven proxy detection with real‑time alerts.  
+🔹 **Report Export Enhancements**: PDF/CSV exports for attendance & analytics dashboards.  
+🔹 **Notifications**: Real-time alerts for low attendance, announcements, and messages.  
+🔹 **More Admin Controls**: College/department/subject management with advanced filters & audit logs.  
 
 ---
 
