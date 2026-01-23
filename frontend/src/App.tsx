@@ -27,6 +27,7 @@ import QuizPage from "./pages/QuizPage";
 import FileSubmissionPage from "./pages/FileSubmissionPage";
 import CreateAssignmentPage from "./pages/CreateAssignmentPage";
 import EvaluationPage from "./pages/EvaluationPage";
+import AITimetablePage from "./pages/AITimetablePage";
 
 const queryClient = new QueryClient();
 
@@ -218,6 +219,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <EvaluationPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/ai-timetable"
+        element={
+          <ProtectedRoute>
+            <AITimetablePage />
           </ProtectedRoute>
         }
       />
