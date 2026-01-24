@@ -4,9 +4,8 @@ pandas==2.0.3
 numpy==1.24.3
 
 # Web Framework
-flask==2.3.3
-flask-cors==4.0.0
-gunicorn==21.2.0
+Flask==2.3.3
+Flask-CORS==4.0.0
 
 # Excel File Handling
 openpyxl==3.1.2
@@ -15,7 +14,7 @@ xlrd==2.0.1
 # Template Engine for HTML Reports
 jinja2==3.1.2
 
-# Data Visualization (for charts in HTML)
+# Data Visualization
 matplotlib==3.7.1
 seaborn==0.12.2
 
@@ -25,3 +24,7 @@ python-dateutil==2.8.2
 
 # Optional: For better performance
 numba==0.57.0
+
+# Development and Production
+gunicorn==21.2.0
+requests==2.31.0

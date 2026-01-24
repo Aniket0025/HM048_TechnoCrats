@@ -1,0 +1,54 @@
+{
+  "model_type": "IsolationForest",
+  "training_date": "2026-01-24T07:39:20.209364",
+  "feature_names": [
+    "total_sessions",
+    "present_sessions",
+    "attendance_percentage",
+    "consecutive_absent",
+    "max_consecutive_absent",
+    "avg_absence_streak",
+    "total_absence_streaks",
+    "days_since_last_present",
+    "attendance_consistency",
+    "attendance_volatility",
+    "recent_attendance_rate",
+    "attendance_trend",
+    "irregularity_score",
+    "risk_score"
+  ],
+  "model_parameters": {
+    "n_estimators": 100,
+    "contamination": 0.1,
+    "random_state": 42
+  },
+  "evaluation_metrics": {
+    "total_samples": 50,
+    "anomalies_detected": 5,
+    "normal_samples": 45,
+    "anomaly_rate": 0.1,
+    "score_statistics": {
+      "mean": 0.07135467612998704,
+      "std": 0.05111278971849252,
+      "min": -0.11029521512159901,
+      "max": 0.1371207971645979
+    }
+  },
+  "feature_importance": {
+    "total_sessions": 0.6942849292016628,
+    "present_sessions": 0.405136580927578,
+    "attendance_percentage": 0.18634549214154156,
+    "consecutive_absent": 0.39826939580124543,
+    "max_consecutive_absent": 0.6234322874183105,
+    "avg_absence_streak": 0.4204141305079736,
+    "total_absence_streaks": 0.5957086008186129,
+    "days_since_last_present": 0.5779641942958195,
+    "attendance_consistency": 0.8287669150259767,
+    "attendance_volatility": 0.6902698188148564,
+    "recent_attendance_rate": 0.38898605507632167,
+    "attendance_trend": 0.3815352178121748,
+    "irregularity_score": 0.7817264269278292,
+    "risk_score": 0.41691339457854504
+  },
+  "version": "1.0.0"
+}
